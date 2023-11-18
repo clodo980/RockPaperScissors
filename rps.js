@@ -43,6 +43,7 @@ function gameOf5() {
             i++;
         } else {
             console.log("Game over!");
+            break;
         };
     };
 };
