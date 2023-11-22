@@ -1,18 +1,23 @@
-// display alert "Game ended." missing on null (esc/exit)
+// Rock, Paper, Scissors console game. Made with JS.
 
 let playerScore = 0;
 let computerScore = 0;
+let continueGame = true;
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = prompt("Rock, paper, or scissors?");
-    playerSelection = playerSelection.toLowerCase();
+    if (playerSelection === null || playerSelection === '') {
+        console.log("Game ended.");
+        continueGame = false;
+        return;
+    }
+    playerSelection.toLowerCase();
     choices = ["rock", "paper", "scissors"];
     const random = Math.floor(Math.random() * choices.length); // choose between the first, second, or third string in the array
     computerSelection = choices[random];
 
     if (playerSelection === "rock" &&  computerSelection === "rock") {
         alert("Computer throws rock. Tie!");
-        
     } else if (playerSelection === "rock" && computerSelection === "paper") {
         alert("Computer throws paper. You lose!");
         computerScore += 1;
@@ -21,7 +26,6 @@ function playRound(playerSelection, computerSelection) {
         playerScore += 1;
     } else if (playerSelection === "paper" && computerSelection === "paper") {
         alert("Computer throws paper. Tie!");
-
     } else if (playerSelection === "paper" && computerSelection === "scissors") {
         alert("Computer throws scissors. You lose!");
         computerScore += 1;
@@ -30,7 +34,6 @@ function playRound(playerSelection, computerSelection) {
         playerScore += 1;
     } else if (playerSelection === "scissors" && computerSelection === "scissors") {
         alert("Computer throws scissors. Tie!");
-
     } else if (playerSelection === "scissors" && computerSelection === "rock") {
         alert("Computer throws rock. You lose!");
         computerScore += 1;
@@ -39,7 +42,6 @@ function playRound(playerSelection, computerSelection) {
         playerScore += 1;
     } else {
         alert("That’s not part of the game. Try again.");
-        
     }
 
     console.log("Player throws " +
@@ -51,7 +53,9 @@ function playRound(playerSelection, computerSelection) {
 function gameOf5() {
     let i = 1;
     const n = 5;
-    while (i <= n + 1) {
+    continueGame = true;
+
+    while (i <= n + 1 && continueGame) {
         if (i <= n) {
             console.log("Game no. " + i + ": ")
             playRound();
