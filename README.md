@@ -1,2 +1,2 @@
 # Rock, Paper, Scissors
-Javascript game of rock, paper, scissors for The Odin Project foundations course.
+Console game for The Odin Project foundations course. Made with Javascript.
