@@ -1,36 +1,51 @@
 // display alert "Game ended." missing on null (esc/exit)
 
-function playRound() {
-    let playerSelection = prompt("Rock, paper, or scissors?");
+let playerScore = 0;
+let computerScore = 0;
+
+function playRound(playerSelection, computerSelection) {
+    playerSelection = prompt("Rock, paper, or scissors?");
     playerSelection = playerSelection.toLowerCase();
-    let computerSelection = ["rock", "paper", "scissors"];
-    const random = Math.floor(Math.random() * computerSelection.length);
-    
-    if (playerSelection === "rock" && computerSelection[random] === "rock") {
+    choices = ["rock", "paper", "scissors"];
+    const random = Math.floor(Math.random() * choices.length); // choose between the first, second, or third string in the array
+    computerSelection = choices[random];
+
+    if (playerSelection === "rock" &&  computerSelection === "rock") {
         alert("Computer throws rock. Tie!");
-    } else if (playerSelection === "rock" && computerSelection[random] === "paper") {
+        
+    } else if (playerSelection === "rock" && computerSelection === "paper") {
         alert("Computer throws paper. You lose!");
-    } else if (playerSelection === "rock" && computerSelection[random] === "scissors") {
+        computerScore += 1;
+    } else if (playerSelection === "rock" && computerSelection === "scissors") {
         alert("Computer throws scissors. You win!");
-    } else if (playerSelection === "paper" && computerSelection[random] === "paper") {
+        playerScore += 1;
+    } else if (playerSelection === "paper" && computerSelection === "paper") {
         alert("Computer throws paper. Tie!");
-    } else if (playerSelection === "paper" && computerSelection[random] === "scissors") {
+
+    } else if (playerSelection === "paper" && computerSelection === "scissors") {
         alert("Computer throws scissors. You lose!");
-    } else if (playerSelection === "paper" && computerSelection[random] === "rock") {
+        computerScore += 1;
+    } else if (playerSelection === "paper" && computerSelection === "rock") {
         alert("Computer throws rock. You win!");
-    } else if (playerSelection === "scissors" && computerSelection[random] === "scissors") {
+        playerScore += 1;
+    } else if (playerSelection === "scissors" && computerSelection === "scissors") {
         alert("Computer throws scissors. Tie!");
-    } else if (playerSelection === "scissors" && computerSelection[random] === "rock") {
+
+    } else if (playerSelection === "scissors" && computerSelection === "rock") {
         alert("Computer throws rock. You lose!");
-    } else if (playerSelection === "scissors" && computerSelection[random] === "paper") {
+        computerScore += 1;
+    } else if (playerSelection === "scissors" && computerSelection === "paper") {
         alert("Computer throws paper. You win!");
+        playerScore += 1;
     } else {
-        alert("That’s not part of the game. Try again.")
+        alert("That’s not part of the game. Try again.");
+        
     }
 
     console.log("Player throws " +
             playerSelection + " || " + "Computer throws " +
-            computerSelection[random]);
+            computerSelection + ". Player score: " + playerScore +
+            " || " + "Computer score: " + computerScore);
 };
 
 function gameOf5() {
@@ -43,6 +58,11 @@ function gameOf5() {
             i++;
         } else {
             console.log("Game over!");
+            if (playerScore > computerScore) {
+                console.log("Player wins!")
+            } else {
+                console.log("Computer wins!")
+            }
             break;
         };
     };
